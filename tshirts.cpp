@@ -17,6 +17,10 @@ int main() {
     assert(size(37) == 'S');
     assert(size(40) == 'M');
     assert(size(43) == 'L');
+    assert((size(38) == 'S') || (size(38) == 'M')); 
+    assert((size(42) == 'M') || (size(42) == 'L'));
+    assert((size(0) != 'S') && (size(0) != 'M') && (size(0) != 'L');
+    assert((size(-10) != 'S') && (size(-10) != 'M') && (size(-10) != 'L');
     std::cout << "All is well (maybe!)\n";
     return 0;
 }
