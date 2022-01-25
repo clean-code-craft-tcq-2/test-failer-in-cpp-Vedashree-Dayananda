@@ -12,31 +12,32 @@ int networkAlertStub(float celcius) {
     std::cout << "ALERT: Temperature is " << celcius << " celcius.\n";
     // Return 200 for ok
     // Return 500 for not-ok
-	if ((celcius <= MINTHRESHOLDTEMPERATURE) && (celcius >= MAXTHRESHOLDTEMPERATURE))
-	{
-		return 200;
-	}
-	networkAlertCount++;
+    if ((celcius <= MINTHRESHOLDTEMPERATURE) && (celcius >= MAXTHRESHOLDTEMPERATURE))
+    {
+	    return 200;
+    }
+    networkAlertCount++;
     return 500;
 }
 
 int networkAlert(float celcius) {
-	std::cout << "ALERT: Temperature is " << celcius << " celcius.\n";
-	if ((celcius <= MINTHRESHOLDTEMPERATURE) && (celcius >= MAXTHRESHOLDTEMPERATURE))
-	{
-		return 200;
-	}
-	return 500;
+    std::cout << "ALERT: Temperature is " << celcius << " celcius.\n";
+    if ((celcius <= MINTHRESHOLDTEMPERATURE) && (celcius >= MAXTHRESHOLDTEMPERATURE))
+    {
+	    return 200;
+    }
+    networkAlertCount++;
+    return 500;
 }
 
 float farenheitToCelciusConverter(float farenheit)
 {
-	float celcius = (farenheit - 32) * 5 / 9;
-	return celcius;
+    float celcius = (farenheit - 32) * 5 / 9;
+    return celcius;
 }
 
 void alertInCelcius(float farenheit, int(*networkAlerter)(float)) {
-	float celcius = farenheitToCelciusConverter(farenheit);
+    float celcius = farenheitToCelciusConverter(farenheit);
     int returnCode = networkAlerter(celcius);
     if (returnCode != 200) {
         // non-ok response is not an error! Issues happen in life!
@@ -48,13 +49,13 @@ void alertInCelcius(float farenheit, int(*networkAlerter)(float)) {
 }
 
 int main() {
-	alertInCelcius(400.5, &networkAlertStub);
-	assert(alertFailureCount == networkAlertCount);
-	alertInCelcius(303.6, &networkAlertStub);
-	assert(alertFailureCount == networkAlertCount);
-	alertInCelcius(303.6, &networkAlert);
+    alertInCelcius(400.5, &networkAlertStub);
+    assert(alertFailureCount == networkAlertCount);
+    alertInCelcius(303.6, &networkAlertStub);
+    assert(alertFailureCount == networkAlertCount);
+    alertInCelcius(100.6, &networkAlert);
     std::cout << alertFailureCount << " alerts failed.\n";
-	std::cout << networkAlertCount << " alerts failed.\n";
+    std::cout << networkAlertCount << " alerts failed.\n";
     std::cout << "All is well (maybe!)\n";
     return 0;
 }
