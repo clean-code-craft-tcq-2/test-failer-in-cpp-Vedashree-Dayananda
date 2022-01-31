@@ -3,9 +3,9 @@
 
 char size(int cms) {
     char sizeName = '\0';
-    if(cms < 38) {
+    if(cms > 0 && cms <= 38) {
         sizeName = 'S';
-    } else if(cms > 38 && cms < 42) {
+    } else if(cms > 38 && cms <= 42) {
         sizeName = 'M';
     } else if(cms > 42) {
         sizeName = 'L';
@@ -17,10 +17,14 @@ int main() {
     assert(size(37) == 'S');
     assert(size(40) == 'M');
     assert(size(43) == 'L');
-    assert((size(38) == 'S') || (size(38) == 'M')); 
-    assert((size(42) == 'M') || (size(42) == 'L'));
-    assert((size(0) != 'S') && (size(0) != 'M') && (size(0) != 'L'));
-    assert((size(-10) != 'S') && (size(-10) != 'M') && (size(-10) != 'L'));
+    assert((size(38) == 'S'); 
+    assert((size(42) == 'M');
+    assert(size(0) != 'S');
+    assert(size(0) != 'M'); 
+    assert(size(0) != 'L');
+    assert(size(-10) != 'S');
+    assert(size(-10) != 'M');
+    assert(size(-10) != 'L');
     std::cout << "All is well (maybe!)\n";
     return 0;
 }
