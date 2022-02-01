@@ -2,7 +2,7 @@
 #include <assert.h>
 
 int alertFailureCount = 0;
-
+#define MAXTHRESHOLDTEMPERATURE 37.2
 
 int networkAlertStubOK(float celcius) {
     std::cout << "ALERT: Temperature is " << celcius << " celcius.\n";
@@ -18,7 +18,7 @@ int networkAlertStubNOK(float celcius) {
 int networkAlert(float celcius) {
 	//Real network alert
     std::cout << "ALERT: Temperature is " << celcius << " celcius.\n";
-    if ((celcius <= MINTHRESHOLDTEMPERATURE) && (celcius >= MAXTHRESHOLDTEMPERATURE))
+    if (celcius >= MAXTHRESHOLDTEMPERATURE))
     {
 	    return 200;
     }
