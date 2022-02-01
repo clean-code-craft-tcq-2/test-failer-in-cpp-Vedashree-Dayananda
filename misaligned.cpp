@@ -79,7 +79,7 @@ std::string formatterStub(int majorColorIndex, int minorColorIndex)
 void printerStub(std::string ColorPairEntry)
 {
 	printCounterStub++;
-	std::cout << ColorPairEntry << std::endl;
+	std::cout << "PrinterStub"<< ColorPairEntry << std::endl;
 }
 
 int printColorMap(std::string(*formatColorPairEntryFunc)(int, int), void(*printOnConsoleFunc)(std::string)) {
