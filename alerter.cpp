@@ -46,10 +46,12 @@ void alertInCelcius(float farenheit, int(*networkAlerterFunc)(float)) {
 int main() {
     alertInCelcius(400.5, &networkAlertStubOK);
     assert(alertFailureCount == 1);
-    alertInCelcius(303.6, &networkAlertStubOk);
+    alertInCelcius(303.6, &networkAlertStubOK);
     assert(alertFailureCount == 2);
-	alertInCelcius(99.0, &networkAlertStubNOk);
-	assert(alertFailureCount == 2);
+    alertInCelcius(99.0, &networkAlertStubNOK);
+    assert(alertFailureCount == 2);
+    alertInCelcius(200.0, &networkAlertStubNOK);
+    assert(alertFailureCount == 2);
     alertInCelcius(100.6, &networkAlert);
     std::cout << alertFailureCount << " alerts failed.\n";
     std::cout << "All is well (maybe!)\n";
