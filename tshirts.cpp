@@ -13,18 +13,19 @@ char size(int cms) {
     return sizeName;
 }
 
+void verifyShirtSize(int size, char expectedSizeName)
+{
+    assert(size(size) == expectedSizeName);
+}
+
 int main() {
-    assert(size(37) == 'S');
-    assert(size(40) == 'M');
-    assert(size(43) == 'L');
-    assert(size(38) == 'S'); 
-    assert(size(42) == 'M');
-    assert(size(0) != 'S');
-    assert(size(0) != 'M'); 
-    assert(size(0) != 'L');
-    assert(size(-10) != 'S');
-    assert(size(-10) != 'M');
-    assert(size(-10) != 'L');
+    verifyShirtSizet(37, 'S');
+    verifyShirtSize(40, 'M');
+    verifyShirtSize(43, 'L');
+    verifyShirtSize(38, 'S'); 
+    verifyShirtSize(42, 'M');
+    verifyShirtSize(0, '\0');
+    verifyShirtSize(-10, '\0');
     std::cout << "All is well (maybe!)\n";
     return 0;
 }
