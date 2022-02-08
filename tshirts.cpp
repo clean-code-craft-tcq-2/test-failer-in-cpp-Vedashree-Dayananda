@@ -19,7 +19,7 @@ void verifyShirtSize(int size, char expectedSizeName)
 }
 
 int main() {
-    verifyShirtSizet(37, 'S');
+    verifyShirtSize(37, 'S');
     verifyShirtSize(40, 'M');
     verifyShirtSize(43, 'L');
     verifyShirtSize(38, 'S'); 
