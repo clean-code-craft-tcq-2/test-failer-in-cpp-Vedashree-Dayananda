@@ -13,9 +13,9 @@ char size(int cms) {
     return sizeName;
 }
 
-void verifyShirtSize(int size, char expectedSizeName)
+void verifyShirtSize(int sizeInCm, char expectedSizeName)
 {
-    assert(size(size) == expectedSizeName);
+    assert(size(sizeInCm) == expectedSizeName);
 }
 
 int main() {
