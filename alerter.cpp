@@ -45,7 +45,7 @@ void alertInCelcius(float farenheit, int(*networkAlerterFunc)(float)) {
 
 void testAlertInCelcius(float farenheit,int(*networkAlerterFunc)(float),int expectedFailureCount)
 {
-	alertInCelcius(400.5, &networkAlerterFunc);
+	alertInCelcius(farenheit, &networkAlerterFunc);
 	assert(alertFailureCount == expectedFailureCount);
 }
 
