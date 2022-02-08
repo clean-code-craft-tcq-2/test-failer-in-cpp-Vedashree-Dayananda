@@ -5,13 +5,13 @@ int alertFailureCount = 0;
 #define MAXTHRESHOLDTEMPERATURE 37.2
 
 int networkAlertStubOK(float celcius) {
-	std::cout << "ALERT: Temperature is " << celcius << " celcius.\n";
+	std::cout << "ALERT: Temperature is " << celcius << " celcius. - OK\n";
 	// Network stub to always return true 
 	return 200;
 }
 
 int networkAlertStubNOK(float celcius) {
-	std::cout << "ALERT: Temperature is " << celcius << " celcius.\n";
+	std::cout << "ALERT: Temperature is " << celcius << " celcius. - NOK\n";
 	// Network stub to always return false
 	return 500;
 }
@@ -45,7 +45,7 @@ void alertInCelcius(float farenheit, int(*networkAlerterFunc)(float)) {
 
 void testAlertInCelcius(float farenheit,int(*networkAlerterFunc)(float),int expectedFailureCount)
 {
-	alertInCelcius(farenheit, &networkAlerterFunc);
+	alertInCelcius(farenheit, networkAlerterFunc);
 	assert(alertFailureCount == expectedFailureCount);
 }
 
@@ -53,7 +53,7 @@ int main() {
 	testAlertInCelcius(400.5, &networkAlertStubNOK,1);
 	testAlertInCelcius(303.6, &networkAlertStubNOK,2);
 	testAlertInCelcius(99.0, &networkAlertStubOK,2);
-	testAlertInCelcius(200.0, &networkAlertStubOK,2);
+	testAlertInCelcius(96.0, &networkAlertStubOK,2);
 	testAlertInCelcius(200.0, &networkAlertStubNOK,3);
 	std::cout << alertFailureCount << " alerts failed.\n";
 	std::cout << "All is well (maybe!)\n";
