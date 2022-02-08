@@ -43,18 +43,18 @@ void alertInCelcius(float farenheit, int(*networkAlerterFunc)(float)) {
 	}
 }
 
+void testAlertInCelcius(float farenheit,int(*networkAlerterFunc)(float),int expectedFailureCount)
+{
+	alertInCelcius(400.5, &networkAlerterFunc);
+	assert(alertFailureCount == expectedFailureCount);
+}
+
 int main() {
-	alertInCelcius(400.5, &networkAlertStubNOK);
-	assert(alertFailureCount == 1);
-	alertInCelcius(303.6, &networkAlertStubNOK);
-	assert(alertFailureCount == 2);
-	alertInCelcius(99.0, &networkAlertStubOK);
-	assert(alertFailureCount == 2);
-	alertInCelcius(200.0, &networkAlertStubOK);
-	assert(alertFailureCount == 2);
-	alertInCelcius(200.0, &networkAlertStubNOK);
-	assert(alertFailureCount == 3);
-	alertInCelcius(100.6, &networkAlert);
+	testAlertInCelcius(400.5, &networkAlertStubNOK,1);
+	testAlertInCelcius(303.6, &networkAlertStubNOK,2);
+	testAlertInCelcius(99.0, &networkAlertStubOK,2);
+	testAlertInCelcius(200.0, &networkAlertStubOK,2);
+	testAlertInCelcius(200.0, &networkAlertStubNOK,3);
 	std::cout << alertFailureCount << " alerts failed.\n";
 	std::cout << "All is well (maybe!)\n";
 	return 0;
